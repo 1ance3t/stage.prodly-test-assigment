@@ -1,27 +1,58 @@
-const Page = require('./page');
+const Page = require('./page')
 
 class RegisterPage extends Page {
-	get inputPhone() {
-		return $('#loginUsername');
-	}
+  get inputName() {
+    return $('input[name="name"]')
+  }
 
-	get inputPassword() {
-		return $('#loginPassword');
-	}
+  get inputPhone() {
+    return $('input[name="phone"]')
+  }
 
-	get btnSubmit() {
-		return $('button[class="send"]');
-	}
+  get inputEmail() {
+    return $('input[type="email"]')
+  }
 
-	async register(phone, password) {
-		await this.inputPhone.setValue(phone);
-		await this.inputPassword.setValue(password);
-		await this.btnSubmit.click();
-	}
+  get checkboxEmail() {
+    return $('label[for="email-checkbox"]')
+  }
 
-	open() {
-		return super.open('register');
-	}
+  get inputPassword() {
+    return $('input[type="password"]')
+  }
+
+  get inputRegId() {
+    return $('input[name="reg_id"]')
+  }
+
+  get btnSubmit() {
+    return $('button[class="send"]')
+  }
+
+  get dialogRegistration() {
+    return $('#globalDialog')
+  }
+
+  get errorMessage() {
+    return $('input[class="error"')
+  }
+
+  get regIdErrorMessage() {
+    return $('//span[contains(text(),"Неверный код регистрации")]')
+  }
+
+  async register(name, phone, email, password, regId) {
+    await this.inputName.setValue(name)
+    await this.inputPhone.setValue(phone)
+    await this.inputEmail.setValue(email)
+    await this.inputPassword.setValue(password)
+    await this.inputRegId.setValue(regId)
+    await this.btnSubmit.click()
+  }
+
+  open() {
+    return super.open('register')
+  }
 }
 
-module.exports = new RegisterPage();
+module.exports = new RegisterPage()

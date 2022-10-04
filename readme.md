@@ -10,10 +10,4 @@ Install the dependencies and devDependencies and start the server.
 cd stage.prodly-test-assigment
 npm i
 npm run wdio
-
-## License
-
-MIT
-
-**Free Software, Hell Yeah!**
 ```

@@ -41,13 +41,20 @@ class RegisterPage extends Page {
     return $('//span[contains(text(),"Неверный код регистрации")]')
   }
 
-  async register(name, phone, email, password, regId) {
+  async register(name, phone, hasEmail, email, password, regId) {
     await this.inputName.setValue(name)
     await this.inputPhone.setValue(phone)
-    await this.inputEmail.setValue(email)
-    await this.inputPassword.setValue(password)
-    await this.inputRegId.setValue(regId)
-    await this.btnSubmit.click()
+    if (!!hasEmail) {
+      await this.inputEmail.setValue(email)
+      await this.inputPassword.setValue(password)
+      await this.inputRegId.setValue(regId)
+      await this.btnSubmit.click()
+    } else {
+      await this.checkboxEmail.click()
+      await this.inputPassword.setValue(password)
+      await this.inputRegId.setValue(regId)
+      await this.btnSubmit.click()
+    }
   }
 
   open() {

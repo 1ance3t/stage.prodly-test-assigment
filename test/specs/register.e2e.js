@@ -7,6 +7,7 @@ describe('Register', () => {
     await RegisterPage.register(
       faker.name.fullName(),
       '+79385565872',
+      true,
       faker.internet.email(),
       faker.internet.password(),
       '',
@@ -22,6 +23,7 @@ describe('Register', () => {
     await RegisterPage.register(
       faker.name.fullName(),
       '123',
+      true,
       faker.internet.email(),
       faker.internet.password(),
       '',
@@ -35,6 +37,7 @@ describe('Register', () => {
     await RegisterPage.register(
       faker.name.fullName(),
       faker.phone.phoneNumber('+7 9## ### ## ##'),
+      true,
       'mironovwill@gmail.com',
       faker.internet.password(),
       '',
@@ -50,6 +53,7 @@ describe('Register', () => {
     await RegisterPage.register(
       faker.name.fullName(),
       faker.phone.phoneNumber('+7 9## ### ## ##'),
+      true,
       faker.internet.email(),
       faker.internet.password(),
       'qwerty',
@@ -65,6 +69,7 @@ describe('Register', () => {
     await RegisterPage.register(
       faker.name.fullName(),
       faker.phone.phoneNumber('+7 9## ### ## ##'),
+      true,
       faker.internet.email(),
       faker.internet.password(),
       '',

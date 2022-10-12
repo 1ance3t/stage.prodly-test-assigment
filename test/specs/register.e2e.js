@@ -1,6 +1,14 @@
 const RegisterPage = require('../pageobjects/register.page')
 const { faker } = require('@faker-js/faker/locale/ru')
 
+const TODO_ITEMS = {
+  alreadyReg:
+    'Пользователь с указанным номером телефона или электронным адресом уже зарегистрирован',
+  wrongPhone: 'Неверный номер телефона',
+  wrongCode: 'Неверный код регистрации',
+  successReg: 'Спасибо за регистрацию',
+}
+
 describe('Register', () => {
   it('should not register with already exist number', async () => {
     await RegisterPage.open()
@@ -13,9 +21,7 @@ describe('Register', () => {
       '',
     )
     await expect(await RegisterPage.errorMessage).toBeExisting()
-    await expect(await RegisterPage.errorMessage).toHaveValueContaining(
-      'Пользователь с указанным номером телефона или электронным адресом уже зарегистрирован',
-    )
+    await expect(await RegisterPage.errorMessage).toHaveValueContaining(TODO_ITEMS.alreadyReg)
   })
 
   it('should not register with already invalid number', async () => {
@@ -29,7 +35,7 @@ describe('Register', () => {
       '',
     )
     await expect(await RegisterPage.errorMessage).toBeExisting()
-    await expect(await RegisterPage.errorMessage).toHaveValueContaining('Неверный номер телефона')
+    await expect(await RegisterPage.errorMessage).toHaveValueContaining(TODO_ITEMS.wrongPhone)
   })
 
   it('should not register with already exist email', async () => {
@@ -43,9 +49,7 @@ describe('Register', () => {
       '',
     )
     await expect(await RegisterPage.errorMessage).toBeExisting()
-    await expect(await RegisterPage.errorMessage).toHaveValueContaining(
-      'Пользователь с указанным номером телефона или электронным адресом уже зарегистрирован',
-    )
+    await expect(await RegisterPage.errorMessage).toHaveValueContaining(TODO_ITEMS.alreadyReg)
   })
 
   it('should not register with invalid exist RegId', async () => {
@@ -59,9 +63,7 @@ describe('Register', () => {
       'qwerty',
     )
     await expect(await RegisterPage.regIdErrorMessage).toBeExisting()
-    await expect(await RegisterPage.regIdErrorMessage).toHaveTextContaining(
-      'Неверный код регистрации',
-    )
+    await expect(await RegisterPage.regIdErrorMessage).toHaveTextContaining(TODO_ITEMS.wrongCode)
   })
 
   it('should register with valid credentials', async () => {
@@ -75,8 +77,6 @@ describe('Register', () => {
       '',
     )
     await expect(await RegisterPage.dialogRegistration).toBeExisting()
-    await expect(await RegisterPage.dialogRegistration).toHaveTextContaining(
-      'Спасибо за регистрацию',
-    )
+    await expect(await RegisterPage.dialogRegistration).toHaveTextContaining(TODO_ITEMS.successReg)
   })
 })

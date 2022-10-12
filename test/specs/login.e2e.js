@@ -1,5 +1,10 @@
 const LoginPage = require('../pageobjects/login.page')
 
+let TODO_ITEMS = {
+  wrongCred: 'Проверьте логин и пароль',
+  dot: 'Выберите торговую точку',
+}
+
 describe('Login', () => {
   it('should not login without password', async () => {
     await LoginPage.open()
@@ -17,13 +22,13 @@ describe('Login', () => {
     await LoginPage.open()
     await LoginPage.login('+79385565871', 'mironovwill@gmail.com')
     await expect(await LoginPage.errorMessage).toBeExisting()
-    await expect(await LoginPage.errorMessage).toHaveValueContaining('Проверьте логин и пароль')
+    await expect(await LoginPage.errorMessage).toHaveValueContaining(TODO_ITEMS.wrongCred)
   })
 
   it('should login with valid credentials', async () => {
     await LoginPage.open()
     await LoginPage.login('+79385565872', 'mironovwill@gmail.com')
     await expect(LoginPage.dialogWindow).toBeExisting()
-    await expect(LoginPage.dialogWindow).toHaveTextContaining('Выберите торговую точку')
+    await expect(LoginPage.dialogWindow).toHaveTextContaining(TODO_ITEMS.dot)
   })
 })

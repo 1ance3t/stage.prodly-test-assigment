@@ -44,7 +44,7 @@ class RegisterPage extends Page {
   async register(name, phone, hasEmail, email, password, regId) {
     await this.inputName.setValue(name)
     await this.inputPhone.setValue(phone)
-    if (!!hasEmail) {
+    if (hasEmail) {
       await this.inputEmail.setValue(email)
       await this.inputPassword.setValue(password)
       await this.inputRegId.setValue(regId)
